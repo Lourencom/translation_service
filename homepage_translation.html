@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Translation Service</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Translation Service</h1>
+    </header>
+
+    <main>
+        <!-- Functionality 1: Estimate Translation Cost -->
+        <section id="estimate-cost">
+            <h2>Get an Estimate</h2>
+            <form action="/submit-estimate" method="post" enctype="multipart/form-data">
+                <label for="input-language">Input Language:</label>
+                <select id="input-language" name="input_language">
+                    <!-- Add language options here -->
+                    <option value="english">English</option>
+                    <option value="portuguese">Portuguese</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="german">German</option>
+                </select>
+
+                <label for="output-language">Output Language:</label>
+                <select id="output-language" name="output_language">
+                    <!-- Add language options here -->
+                    <option value="english">English</option>
+                    <option value="portuguese">Portuguese</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="german">German</option>
+                </select>
+
+                <label for="file-upload">Upload your document:</label>
+                <input type="file" id="file-upload" name="file_upload" accept=".pdf">
+
+                <button type="submit">Get Estimate</button>
+            </form>
+        </section>
+
+        <!-- Functionality 2: Submit Translation Request -->
+        <section id="submit-translation">
+            <h2>Submit Your Translation</h2>
+            <form action="/submit-translation" method="post" enctype="multipart/form-data">
+                <input type="file" id="file-upload" name="file_upload" accept=".doc, .docx, .pdf, .txt">
+
+                <input type="text" id="name" name="name" placeholder="Your Name">
+                <input type="text" id="address" name="address" placeholder="Your Address">
+                <input type="email" id="email" name="email" placeholder="Your Email">
+                <input type="tel" id="phone" name="phone" placeholder="Your Phone">
+                <input type="text" id="fiscal-number" name="fiscal_number" placeholder="Your Fiscal Number">
+
+                <button type="submit">Submit Translation</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 Your Translation Service</p>
+    </footer>
+</body>
+</html>
+
