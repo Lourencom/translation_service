@@ -61,11 +61,11 @@ app.use(express.urlencoded({ extended: true }))
 
 // Route for estimate submission
 app.post('/submit-estimate', upload.single('file_upload'), async (req, res) => {
-  const { InputLanguage, Output_Language } = req.body
+  const { InputLanguage, OutputLanguage } = req.body
   const file = req.file
 
   console.log('Input Language:', InputLanguage)
-  console.log('Output Language:', Output_Language)
+  console.log('Output Language:', OutputLanguage)
   if (file) {
     if (file.mimetype !== 'application/pdf') {
       return res.status(400).send('File must be a PDF')
@@ -91,7 +91,7 @@ app.post('/submit-estimate', upload.single('file_upload'), async (req, res) => {
         console.log('Uploaded File:', file.path, 'Word Count:', wordCount)
 
         // Send response with word count
-        res.send(`Estimate received. Input: ${InputLanguage}, Output: ${Output_Language}, File: ${file.originalname}, Word Count: ${wordCount}`)
+        res.send(`Estimate received. Input: ${InputLanguage}, Output: ${OutputLanguage}, File: ${file.originalname}, Word Count: ${wordCount}`)
       })
     } catch (error) {
       console.error('Error during file processing:', error)
