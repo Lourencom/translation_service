@@ -44,19 +44,40 @@
         <!-- Functionality 2: Submit Translation Request -->
         <section id="submit-translation">
             <h2>Submit Your Translation</h2>
-            <form action="/submit-translation" method="post" enctype="multipart/form-data">
-                <input type="file" id="file-upload" name="file_upload" accept=".doc, .docx, .pdf, .txt">
-
-                <input type="text" id="name" name="name" placeholder="Your Name">
-                <input type="text" id="address" name="address" placeholder="Your Address">
-                <input type="email" id="email" name="email" placeholder="Your Email">
-                <input type="tel" id="phone" name="phone" placeholder="Your Phone">
-                <input type="text" id="fiscal-number" name="fiscal_number" placeholder="Your Fiscal Number">
-
-                <button type="submit">Submit Translation</button>
+            <form id="translationForm" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="text" name="ClientName" placeholder="Client Name" required>
+                <input type="text" name="ClientAddress" placeholder="Client Address" required>
+                <input type="email" name="ClientEmail" placeholder="Client Email" required>
+                <input type="text" name="ClientPhone" placeholder="Client Phone" required>
+                <input type="text" name="ClientFiscalnum" placeholder="Client Fiscal Number" required>
+                <button type="submit">Submit</button>
             </form>
         </section>
-    </main>
+        
+        <script>
+            document.getElementById('translationForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+        
+                // Create FormData object from the form
+                var formData = new FormData(this);
+        
+                // Send the data using Fetch API
+                fetch('/submit-translation', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if(response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Server responded with an error!');
+                    }
+                })
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+            });
+        </script>
 
     <footer>
         <p>© 2023 Your Translation Service</p>
